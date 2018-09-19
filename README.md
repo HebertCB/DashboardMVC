@@ -1,11 +1,11 @@
 # DashboardMVC
 Spring MVC Dashboard Project
-#Tecnologías usadas
+# Tecnologías usadas
   - Material Design Lite 1.3.0
   - Maven
   - Hibernate
-#Base de datos
-  - MySQL
+# Base de datos
+  - MySQL  
 # Frameworks
   - Spring
 # Autor
