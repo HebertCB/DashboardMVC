@@ -1,0 +1,5 @@
+pe\com\dashboard\modelo\Usuario.class
+pe\com\dashboard\HibernateConfiguration.class
+pe\com\dashboard\dao\UsuarioDaoI.class
+pe\com\dashboard\dao\UsuarioDaoImpl.class
+pe\com\dashboard\SysDataAccess.class
