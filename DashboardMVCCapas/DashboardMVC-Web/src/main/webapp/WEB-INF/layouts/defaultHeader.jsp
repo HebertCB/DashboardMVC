@@ -4,7 +4,7 @@
       
       <div class="mdl-layout-spacer"></div>
       
-      <form action="${pageContext.request.contextPath}/search" method="POST" style="margin-bottom: 0em">
+      <form action="${pageContext.request.contextPath}/searchUser" method="POST" style="margin-bottom: 0em">
       
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
         <label class="mdl-button mdl-js-button mdl-button--icon" for="search">

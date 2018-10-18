@@ -61,30 +61,45 @@ public class UsuarioControl {
         List<Usuario> lista = usuarioServicioI.listarEntidad();
         model.put("listaUsuario", lista);
         model.put("noresults", "No users registered yet.");
+        model.put("accion", "Add...");
         return new ModelAndView("m_team");
     }
     
-    @RequestMapping(value = {"/search"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/searchUser"}, method = RequestMethod.POST)
     public  ModelAndView buscarEntidad(Map<String,Object> model, HttpServletRequest r, @ModelAttribute("modeloUsuario")Usuario usuario,
         BindingResult result){
         String dato=r.getParameter("dato");
         List<Usuario> lista=usuarioServicioI.listarEntidadDato(dato);
         model.put("listaUsuario", lista);
         model.put("noresults", "No matches were found.");
+        model.put("accion", "Add...");
         return new ModelAndView("m_team");
-    }
+    }   
     
-    @RequestMapping(value = {"/delete" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/deleteUser" }, method = RequestMethod.GET)
     public ModelAndView eliminarEntidad(HttpServletRequest r){
         int idEntidad=Integer.parseInt(r.getParameter("id"));
         usuarioServicioI.eliminarEntidad(idEntidad);
         return new ModelAndView(new RedirectView("/team"));
     }
     
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView guardarEntidad(@ModelAttribute ("modeloUsuario")Usuario usuario, BindingResult result){
-        usuarioServicioI.guardarEntidad(usuario);
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
+    public ModelAndView guardarEntidad(@ModelAttribute ("modeloUsuario")Usuario usuario, BindingResult result){        
+        if(usuario.getIdUsuario() == null)
+            usuarioServicioI.guardarEntidad(usuario);
+	else
+            usuarioServicioI.modificarEntidad(usuario);
         return new ModelAndView(new RedirectView("/team"));
-    }       
+    }      
+    
+    @RequestMapping(value = {"/updateUser" }, method = RequestMethod.GET)
+    public ModelAndView actualizarEntidad(HttpServletRequest r, Map<String,Object> model){
+        int idEntidad=Integer.parseInt(r.getParameter("id"));       
+        List<Usuario> lista = usuarioServicioI.listarEntidad();
+        model.put("listaUsuario", lista);
+        model.put("modeloUsuario",usuarioServicioI.buscarEntidadId(idEntidad));
+        model.put("accion", "Edit...");
+        return new ModelAndView("m_team");
+    }
     
 }
